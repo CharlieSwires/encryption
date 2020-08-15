@@ -32,7 +32,7 @@ class Test {
 
         String inputData = "Hello this is a test!! Charlie was ere!";
         
-        String digest = generateRSAKeys.MySha256(inputData);
+        String digest = generateRSAKeys.sha256(inputData);
         System.out.println("digest: " + digest);
         
         String encryptedData = generateRSAKeys.encrypt(privateKeyFilename, digest);
@@ -41,7 +41,7 @@ class Test {
         Assert.assertEquals("G3WWx7K5DuTIadI4YHc7qx4LetTPfxvgoKOB0X09u44=", digest);
         inputData = "Hello this is a test!! Charlie was ere! "; //extra space
         
-        digest = generateRSAKeys.MySha256(inputData);
+        digest = generateRSAKeys.sha256(inputData);
         System.out.println("digest: " + digest);
         Assert.assertFalse("G3WWx7K5DuTIadI4YHc7qx4LetTPfxvgoKOB0X09u44=".equals(digest));
  
@@ -72,7 +72,7 @@ class Test {
                 + "Hello this is a test!! Charlie was ere! "
                 + "Hello this is a test!! Charlie was ere! ";
         
-        digest = generateRSAKeys.MySha256(inputData);
+        digest = generateRSAKeys.sha256(inputData);
         System.out.println("digest: " + digest);
         Assert.assertFalse("G3WWx7K5DuTIadI4YHc7qx4LetTPfxvgoKOB0X09u44=".equals(digest));
 

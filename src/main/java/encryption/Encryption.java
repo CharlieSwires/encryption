@@ -1,10 +1,5 @@
 package encryption;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -25,7 +20,6 @@ public class Encryption {
 
     public static final int PRIVATE = 1;
     public static final int PUBLIC = 0;
-    private SHA256Digest digest = null;
 
 
     public String[] generate (){
@@ -64,6 +58,10 @@ public class Encryption {
 
     private static class FixedRand extends SecureRandom {
 
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 3601395921206427046L;
         MessageDigest sha;
         byte[] state;
 
@@ -106,7 +104,7 @@ public class Encryption {
     }
 
 
-    public String MySha256(String input) {
+    public String sha256(String input) {
         //setDigest
         byte[] result = new String(input).getBytes();
         System.out.println("result size: " + result.length);
@@ -128,34 +126,6 @@ public class Encryption {
 
     }
 
-    private void encrypt (String publicKeyFilename, String inputFilename, String encryptedFilename){
-
-        try {
-
-            Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-
-            String key = readFileAsString(publicKeyFilename);
-            Base64.Decoder b64 = Base64.getDecoder();
-            AsymmetricKeyParameter publicKey = 
-                    (AsymmetricKeyParameter) PublicKeyFactory.createKey(b64.decode(key));
-            AsymmetricBlockCipher e = new RSAEngine();
-            e = new org.bouncycastle.crypto.encodings.PKCS1Encoding(e);
-            e.init(true, publicKey);
-
-            String inputdata = readFileAsString(inputFilename);
-            byte[] messageBytes = inputdata.getBytes();
-            byte[] hexEncodedCipher = e.processBlock(messageBytes, 0, messageBytes.length);
-
-            //System.out.println(getHexString(hexEncodedCipher));
-            BufferedWriter out = new BufferedWriter(new FileWriter(encryptedFilename));
-            out.write(getHexString(hexEncodedCipher));
-            out.close();
-
-        }
-        catch (Exception e) {
-            //System.out.println(e);
-        }
-    }
 
     public String encrypt (String publicKeyFilename, String inputData){
 
@@ -164,19 +134,20 @@ public class Encryption {
 
             Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 
-            Base64.Decoder b64 = Base64.getDecoder();
+            Base64.Decoder b64d = Base64.getDecoder();
             String key = publicKeyFilename;
             AsymmetricKeyParameter publicKey = 
-                    (AsymmetricKeyParameter) PublicKeyFactory.createKey(b64.decode(key));
+                    (AsymmetricKeyParameter) PublicKeyFactory.createKey(b64d.decode(key));
             AsymmetricBlockCipher e = new RSAEngine();
             e = new org.bouncycastle.crypto.encodings.PKCS1Encoding(e);
             e.init(true, publicKey);
 
             byte[] messageBytes = inputData.getBytes();
             byte[] hexEncodedCipher = e.processBlock(messageBytes, 0, messageBytes.length);
+            Base64.Encoder b64e = Base64.getEncoder();
 
             //System.out.println(getHexString(hexEncodedCipher));
-            encryptedData = getHexString(hexEncodedCipher);
+            encryptedData = b64e.encodeToString(hexEncodedCipher);
 
         }
         catch (Exception e) {
@@ -186,36 +157,6 @@ public class Encryption {
         return encryptedData;
     }
 
-
-
-    private void decrypt (String privateKeyFilename, String encryptedFilename, String outputFilename){
-
-        try {
-
-            Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-
-            String key = readFileAsString(privateKeyFilename);
-            Base64.Decoder b64 = Base64.getDecoder();
-            AsymmetricKeyParameter privateKey = 
-                    (AsymmetricKeyParameter) PrivateKeyFactory.createKey(b64.decode(key));
-            AsymmetricBlockCipher e = new RSAEngine();
-            e = new org.bouncycastle.crypto.encodings.PKCS1Encoding(e);
-            e.init(false, privateKey);
-
-            String inputdata = readFileAsString(encryptedFilename);
-            byte[] messageBytes = hexStringToByteArray(inputdata);
-            byte[] hexEncodedCipher = e.processBlock(messageBytes, 0, messageBytes.length);
-
-            //System.out.println(new String(hexEncodedCipher));
-            BufferedWriter out = new BufferedWriter(new FileWriter(outputFilename));
-            out.write(new String(hexEncodedCipher));
-            out.close();
-
-        }
-        catch (Exception e) {
-            //System.out.println(e);
-        }
-    }
 
     public String decrypt (String privateKeyFilename, String encryptedData) {
 
@@ -232,7 +173,7 @@ public class Encryption {
             e = new org.bouncycastle.crypto.encodings.PKCS1Encoding(e);
             e.init(false, privateKey);
 
-            byte[] messageBytes = hexStringToByteArray(encryptedData);
+            byte[] messageBytes = b64.decode(encryptedData);
             byte[] hexEncodedCipher = e.processBlock(messageBytes, 0, messageBytes.length);
 
             //System.out.println(new String(hexEncodedCipher));
@@ -246,49 +187,6 @@ public class Encryption {
         return outputData;
     }
 
-    public static String getHexString(byte[] b) throws Exception {
-        String result = "";
-        for (int i=0; i < b.length; i++) {
-            result +=
-                    Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 );
-        }
-        return result;
-    }
-
-    public static byte[] hexStringToByteArray(String s) {
-        int len = s.length();
-        byte[] data = new byte[len / 2];
-        for (int i = 0; i < len; i += 2) {
-            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
-                    + Character.digit(s.charAt(i+1), 16));
-        }
-        return data;
-    }
-
-    public static String readFileAsString(String filePath)
-            throws java.io.IOException{
-        StringBuffer fileData = new StringBuffer(1000);
-        BufferedReader reader = new BufferedReader(
-                new FileReader(filePath));
-        char[] buf = new char[1024];
-        int numRead=0;
-        while((numRead=reader.read(buf)) != -1){
-            String readData = String.valueOf(buf, 0, numRead);
-            fileData.append(readData);
-            buf = new char[1024];
-        }
-        reader.close();
-        //System.out.println(fileData.toString());
-        return fileData.toString();
-    }
-
-    public SHA256Digest getDigest() {
-        return digest;
-    }
-
-    public void setDigest(SHA256Digest digest) {
-        this.digest = digest;
-    }
 
 
 }
