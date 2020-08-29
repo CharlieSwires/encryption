@@ -10,6 +10,7 @@ import java.security.Security;
 import java.util.Base64;
 
 import org.bouncycastle.crypto.AsymmetricBlockCipher;
+import org.bouncycastle.crypto.digests.SHA1Digest;
 import org.bouncycastle.crypto.digests.SHA256Digest;
 import org.bouncycastle.crypto.engines.RSAEngine;
 import org.bouncycastle.crypto.params.AsymmetricKeyParameter;
@@ -120,6 +121,22 @@ public class Encryption {
             }
             digester.doFinal(retValue, 0);
         }
+        System.out.println("retValue size: " + retValue.length);
+        return b64.encodeToString(retValue);
+        //return new String(retValue, StandardCharsets.UTF_8);
+
+    }
+    public String sha1(String input) {
+        //setDigest
+        byte[] result = new String(input).getBytes();
+        System.out.println("result size: " + result.length);
+        Base64.Encoder b64 = Base64.getEncoder();
+        SHA1Digest digester = new SHA1Digest();
+        byte[] retValue  = null;
+        digester = new SHA1Digest();
+        retValue = new byte[digester.getDigestSize()];
+        digester.update(result, 0, result.length);
+        digester.doFinal(retValue, 0);
         System.out.println("retValue size: " + retValue.length);
         return b64.encodeToString(retValue);
         //return new String(retValue, StandardCharsets.UTF_8);
