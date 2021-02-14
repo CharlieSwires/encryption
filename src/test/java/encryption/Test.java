@@ -1,5 +1,7 @@
 package encryption;
 
+import java.security.SecureRandom;
+
 import org.junit.Assert;
 
 class Test {
@@ -31,19 +33,19 @@ class Test {
         String privateKeyFilename = result[Encryption.PUBLIC];
 
         String inputData = "Hello this is a test!! Charlie was ere!";
-        
-        String digest = generateRSAKeys.sha256(inputData);
+        SecureRandom sr = new SecureRandom();
+        byte[] salt = new byte[32];
+        sr.nextBytes(salt);
+        String digest = generateRSAKeys.sha256(salt, inputData);
         System.out.println("digest: " + digest);
         
         String encryptedData = generateRSAKeys.encrypt(privateKeyFilename, digest);
 
         Assert.assertEquals(digest,generateRSAKeys.decrypt(publicKeyFilename, encryptedData));
-        Assert.assertEquals("G3WWx7K5DuTIadI4YHc7qx4LetTPfxvgoKOB0X09u44=", digest);
         inputData = "Hello this is a test!! Charlie was ere! "; //extra space
         
-        digest = generateRSAKeys.sha256(inputData);
+        digest = generateRSAKeys.sha256(salt, inputData);
         System.out.println("digest: " + digest);
-        Assert.assertFalse("G3WWx7K5DuTIadI4YHc7qx4LetTPfxvgoKOB0X09u44=".equals(digest));
  
         inputData = "Hello this is a test!! Charlie was ere! "
                 + "Hello this is a test!! Charlie was ere! "
@@ -72,9 +74,62 @@ class Test {
                 + "Hello this is a test!! Charlie was ere! "
                 + "Hello this is a test!! Charlie was ere! ";
         
-        digest = generateRSAKeys.sha256(inputData);
+        digest = generateRSAKeys.sha256(salt, inputData);
         System.out.println("digest: " + digest);
-        Assert.assertFalse("G3WWx7K5DuTIadI4YHc7qx4LetTPfxvgoKOB0X09u44=".equals(digest));
+
+        
+    }
+    //Signing
+    @org.junit.jupiter.api.Test
+    void test3() {
+
+        Encryption generateRSAKeys = new Encryption();
+
+        String[] result = generateRSAKeys.generate();
+        String publicKeyFilename = result[Encryption.PRIVATE];
+        String privateKeyFilename = result[Encryption.PUBLIC];
+
+        String inputData = "Hello this is a test!! Charlie was ere!";
+        String digest = generateRSAKeys.sha1(inputData);
+        System.out.println("digest: " + digest);
+        
+        String encryptedData = generateRSAKeys.encrypt(privateKeyFilename, digest);
+
+        Assert.assertEquals(digest,generateRSAKeys.decrypt(publicKeyFilename, encryptedData));
+        inputData = "Hello this is a test!! Charlie was ere! "; //extra space
+        
+        digest = generateRSAKeys.sha1(inputData);
+        System.out.println("digest: " + digest);
+ 
+        inputData = "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! "
+                + "Hello this is a test!! Charlie was ere! ";
+        
+        digest = generateRSAKeys.sha1(inputData);
+        System.out.println("digest: " + digest);
 
         
     }

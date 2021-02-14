@@ -5,17 +5,24 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 import java.security.Security;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 import java.util.Base64;
+
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 
 import org.bouncycastle.crypto.AsymmetricBlockCipher;
 import org.bouncycastle.crypto.digests.SHA1Digest;
-import org.bouncycastle.crypto.digests.SHA256Digest;
 import org.bouncycastle.crypto.engines.RSAEngine;
 import org.bouncycastle.crypto.params.AsymmetricKeyParameter;
 import org.bouncycastle.crypto.util.PrivateKeyFactory;
 import org.bouncycastle.crypto.util.PublicKeyFactory;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 public class Encryption {
 
@@ -105,31 +112,31 @@ public class Encryption {
     }
 
 
-    public String sha256(String input) {
-        //setDigest
-        byte[] result = new String(input).getBytes();
-        System.out.println("result size: " + result.length);
-        Base64.Encoder b64 = Base64.getEncoder();
-        SHA256Digest digester = new SHA256Digest();
-        byte[] retValue  = null;
+    public String sha256(byte[] salt, String input) {
+        Security.addProvider(new BouncyCastleProvider());
 
-        for (int i = 0; i < 10; i++) {
-            digester = new SHA256Digest();
-            retValue = new byte[digester.getDigestSize()];
-            for (int j = 0; j < 10; j++) {
-                digester.update(result, 0, result.length);
-            }
-            digester.doFinal(retValue, 0);
+        Base64.Encoder b64 = Base64.getEncoder();
+        SecretKeyFactory factoryBC = null;
+        try {
+            factoryBC = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256", "BC");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchProviderException e) {
+            e.printStackTrace();
         }
-        System.out.println("retValue size: " + retValue.length);
-        return b64.encodeToString(retValue);
-        //return new String(retValue, StandardCharsets.UTF_8);
+        KeySpec keyspecBC = new PBEKeySpec(input.toCharArray(), salt, 12000, 256);
+        SecretKey keyBC = null;
+        try {
+            keyBC = factoryBC.generateSecret(keyspecBC);
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+
+        return b64.encodeToString(keyBC.getEncoded());
 
     }
     public String sha1(String input) {
-        //setDigest
         byte[] result = new String(input).getBytes();
-        System.out.println("result size: " + result.length);
         Base64.Encoder b64 = Base64.getEncoder();
         SHA1Digest digester = new SHA1Digest();
         byte[] retValue  = null;
@@ -137,9 +144,7 @@ public class Encryption {
         retValue = new byte[digester.getDigestSize()];
         digester.update(result, 0, result.length);
         digester.doFinal(retValue, 0);
-        System.out.println("retValue size: " + retValue.length);
         return b64.encodeToString(retValue);
-        //return new String(retValue, StandardCharsets.UTF_8);
 
     }
 
@@ -163,7 +168,6 @@ public class Encryption {
             byte[] hexEncodedCipher = e.processBlock(messageBytes, 0, messageBytes.length);
             Base64.Encoder b64e = Base64.getEncoder();
 
-            //System.out.println(getHexString(hexEncodedCipher));
             encryptedData = b64e.encodeToString(hexEncodedCipher);
 
         }
