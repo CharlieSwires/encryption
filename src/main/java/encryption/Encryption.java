@@ -120,16 +120,16 @@ public class Encryption {
         try {
             factoryBC = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256", "BC");
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         } catch (NoSuchProviderException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         KeySpec keyspecBC = new PBEKeySpec(input.toCharArray(), salt, 12000, 256);
         SecretKey keyBC = null;
         try {
             keyBC = factoryBC.generateSecret(keyspecBC);
         } catch (InvalidKeySpecException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return b64.encodeToString(keyBC.getEncoded());
@@ -149,7 +149,7 @@ public class Encryption {
     }
 
 
-    public String encrypt (String publicKeyFilename, String inputData){
+    public String encrypt (String publicKeyString, String inputData){
 
         String encryptedData = null;
         try {
@@ -157,7 +157,7 @@ public class Encryption {
             Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 
             Base64.Decoder b64d = Base64.getDecoder();
-            String key = publicKeyFilename;
+            String key = publicKeyString;
             AsymmetricKeyParameter publicKey = 
                     (AsymmetricKeyParameter) PublicKeyFactory.createKey(b64d.decode(key));
             AsymmetricBlockCipher e = new RSAEngine();
@@ -172,21 +172,21 @@ public class Encryption {
 
         }
         catch (Exception e) {
-            System.out.println(e);
+            throw new RuntimeException(e);
         }
 
         return encryptedData;
     }
 
 
-    public String decrypt (String privateKeyFilename, String encryptedData) {
+    public String decrypt (String privateKeyString, String encryptedData) {
 
         String outputData = null;
         try {
 
             Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 
-            String key = privateKeyFilename;
+            String key = privateKeyString;
             Base64.Decoder b64 = Base64.getDecoder();
             AsymmetricKeyParameter privateKey = 
                     (AsymmetricKeyParameter) PrivateKeyFactory.createKey(b64.decode(key));
@@ -202,7 +202,7 @@ public class Encryption {
 
         }
         catch (Exception e) {
-            //System.out.println(e);
+            throw new RuntimeException(e);
         }
 
         return outputData;
