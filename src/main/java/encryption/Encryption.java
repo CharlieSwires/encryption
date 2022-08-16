@@ -23,14 +23,18 @@ import org.bouncycastle.crypto.params.AsymmetricKeyParameter;
 import org.bouncycastle.crypto.util.PrivateKeyFactory;
 import org.bouncycastle.crypto.util.PublicKeyFactory;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-
+/**
+ * Copyright 2021 Charles Swires All Rights Reserved
+ * @author charl
+ *
+ */
 public class Encryption {
 
     public static final int PRIVATE = 1;
     public static final int PUBLIC = 0;
 
 
-    public String[] generate (){
+    public static String[] generate (){
 
         try {
 
@@ -40,7 +44,7 @@ public class Encryption {
             KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA", "BC");
             Base64.Encoder b64 = Base64.getEncoder();
 
-            SecureRandom random = createFixedRandom();
+            SecureRandom random = new SecureRandom();
             generator.initialize(1024, random);
 
             KeyPair pair = generator.generateKeyPair();
@@ -59,60 +63,17 @@ public class Encryption {
 
     }
 
-    public static SecureRandom createFixedRandom()
-    {
-        return new FixedRand();
-    }
-
-    private static class FixedRand extends SecureRandom {
-
-        /**
-         * 
-         */
-        private static final long serialVersionUID = 3601395921206427046L;
-        MessageDigest sha;
-        byte[] state;
-
-        FixedRand() {
-            try
-            {
-                this.sha = MessageDigest.getInstance("SHA-1");
-                this.state = sha.digest();
-            }
-            catch (NoSuchAlgorithmException e)
-            {
-                throw new RuntimeException("can't find SHA-1!");
-            }
-        }
-
-        public void nextBytes(byte[] bytes){
-
-            int    off = 0;
-
-            sha.update(state);
-
-            while (off < bytes.length)
-            {                
-                state = sha.digest();
-
-                if (bytes.length - off > state.length)
-                {
-                    System.arraycopy(state, 0, bytes, off, state.length);
-                }
-                else
-                {
-                    System.arraycopy(state, 0, bytes, off, bytes.length - off);
-                }
-
-                off += state.length;
-
-                sha.update(state);
-            }
-        }
-    }
 
 
-    public String sha256(byte[] salt, String input) {
+    /**
+     * SecureRandom random = new SecureRandom();
+     * byte salt[] = new salt[20];
+     * random.nextBytes(salt);
+     * @param salt
+     * @param input
+     * @return
+     */
+    public static String sha256(byte[] salt, String input) {
         Security.addProvider(new BouncyCastleProvider());
 
         Base64.Encoder b64 = Base64.getEncoder();
@@ -135,8 +96,8 @@ public class Encryption {
         return b64.encodeToString(keyBC.getEncoded());
 
     }
-    public String sha1(String input) {
-        byte[] result = new String(input).getBytes();
+    public static String sha1(byte[] bs) {
+        byte[] result = bs;
         Base64.Encoder b64 = Base64.getEncoder();
         SHA1Digest digester = new SHA1Digest();
         byte[] retValue  = null;
@@ -147,9 +108,12 @@ public class Encryption {
         return b64.encodeToString(retValue);
 
     }
+    public static String sha1(String bs) {
+        return sha1(bs.getBytes());
+    }
 
 
-    public String encrypt (String publicKeyString, String inputData){
+    public static String encrypt (String publicKeyString, String inputData){
 
         String encryptedData = null;
         try {
@@ -179,7 +143,7 @@ public class Encryption {
     }
 
 
-    public String decrypt (String privateKeyString, String encryptedData) {
+    public static String decrypt (String privateKeyString, String encryptedData) {
 
         String outputData = null;
         try {
@@ -208,6 +172,18 @@ public class Encryption {
         return outputData;
     }
 
+    public static String byteArrayToHexString(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+            sb.append(String.format("%02X", b));
+        }
+        return sb.toString();
+    }
 
 
+    public static void main(String [] args) {
+        String [] result = Encryption.generate();
+        System.out.println("Private="+result[Encryption.PRIVATE]);
+        System.out.println("Public="+result[Encryption.PUBLIC]);
+    }
 }
