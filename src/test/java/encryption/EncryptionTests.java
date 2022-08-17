@@ -2,12 +2,17 @@ package encryption;
 
 import java.security.SecureRandom;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-class Test {
+class EncryptionTests {
+    @BeforeEach
+    void setUp() throws Exception {
+    }
 
     //encryption/decryption
-    @org.junit.jupiter.api.Test
+    @Test
     void test() {
 
         String[] result = Encryption.generate();
@@ -17,11 +22,11 @@ class Test {
         String inputData = "Hello this is a test!! Charlie was ere!";
         String encryptedData = Encryption.encrypt(publicKeyFilename, inputData);
 
-        Assert.assertEquals(inputData,Encryption.decrypt(privateKeyFilename, encryptedData));
+        Assertions.assertEquals(inputData,Encryption.decrypt(privateKeyFilename, encryptedData));
     }
     
     //Signing
-    @org.junit.jupiter.api.Test
+    @Test
     void test2() {
 
 
@@ -38,7 +43,7 @@ class Test {
         
         String encryptedData = Encryption.encrypt(privateKeyFilename, digest);
 
-        Assert.assertEquals(digest,Encryption.decrypt(publicKeyFilename, encryptedData));
+        Assertions.assertEquals(digest,Encryption.decrypt(publicKeyFilename, encryptedData));
         inputData = "Hello this is a test!! Charlie was ere! "; //extra space
         
         digest = Encryption.sha256(salt, inputData);
@@ -77,7 +82,7 @@ class Test {
         
     }
     //Signing
-    @org.junit.jupiter.api.Test
+    @Test
     void test3() {
 
 
@@ -91,7 +96,7 @@ class Test {
         
         String encryptedData = Encryption.encrypt(privateKeyFilename, digest);
 
-        Assert.assertEquals(digest,Encryption.decrypt(publicKeyFilename, encryptedData));
+        Assertions.assertEquals(digest,Encryption.decrypt(publicKeyFilename, encryptedData));
         inputData = "Hello this is a test!! Charlie was ere! "; //extra space
         
         digest = Encryption.sha1(inputData);
@@ -128,6 +133,17 @@ class Test {
         System.out.println("digest: " + digest);
 
         
+    }
+    @Test
+    void test4() {
+        String[] result = Encryption.generate();
+        String publicKeyFilename = result[Encryption.PRIVATE];
+        String privateKeyFilename = result[Encryption.PUBLIC];
+        String[] result2 = Encryption.generate();
+        String publicKeyFilename2 = result2[Encryption.PRIVATE];
+        String privateKeyFilename2 = result2[Encryption.PUBLIC];
+        Assertions.assertNotEquals(publicKeyFilename,publicKeyFilename2);
+        Assertions.assertNotEquals(privateKeyFilename,privateKeyFilename2);
     }
 
 }
