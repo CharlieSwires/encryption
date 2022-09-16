@@ -134,7 +134,7 @@ public class Encryption {
             int pages = inputData.getBytes().length/ MAX_LENGTH +(modulus > 0? 1:0);
 
             for (int i = 0; i < pages;i++){
-                byte[] buffer = new byte[pages == 1 || i == pages-1 ? modulus : MAX_LENGTH];
+                byte[] buffer = new byte[((pages == 1 || i == pages-1) && modulus != 0) ? modulus : MAX_LENGTH];
                 for (int j = 0; j < MAX_LENGTH && ((i * MAX_LENGTH + j) < inputData.getBytes().length); j++){
                     buffer[j] = inputData.getBytes()[i * MAX_LENGTH + j];
                 }
