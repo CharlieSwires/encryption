@@ -32,7 +32,8 @@ public class Encryption {
 
     public static final int PRIVATE = 1;
     public static final int PUBLIC = 0;
-
+    private static final int KEY_LENGTH = 1024;
+    private static final int MAX_LENGTH = KEY_LENGTH/10;
 
     public static String[] generate (){
 
@@ -45,7 +46,7 @@ public class Encryption {
             Base64.Encoder b64 = Base64.getEncoder();
 
             SecureRandom random = new SecureRandom();
-            generator.initialize(1024, random);
+            generator.initialize(KEY_LENGTH, random);
 
             KeyPair pair = generator.generateKeyPair();
             Key pubKey = pair.getPublic();
@@ -115,7 +116,7 @@ public class Encryption {
 
     public static String encrypt (String publicKeyString, String inputData){
 
-        String encryptedData = null;
+        String encryptedData = "";
         try {
 
             Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
@@ -128,12 +129,21 @@ public class Encryption {
             e = new org.bouncycastle.crypto.encodings.PKCS1Encoding(e);
             e.init(true, publicKey);
 
-            byte[] messageBytes = inputData.getBytes();
-            byte[] hexEncodedCipher = e.processBlock(messageBytes, 0, messageBytes.length);
             Base64.Encoder b64e = Base64.getEncoder();
+            int modulus = inputData.getBytes().length% MAX_LENGTH;
+            int pages = inputData.getBytes().length/ MAX_LENGTH +(modulus > 0? 1:0);
 
-            encryptedData = b64e.encodeToString(hexEncodedCipher);
+            for (int i = 0; i < pages;i++){
+                byte[] buffer = new byte[pages == 1 || i == pages-1 ? modulus : MAX_LENGTH];
+                for (int j = 0; j < MAX_LENGTH && ((i * MAX_LENGTH + j) < inputData.getBytes().length); j++){
+                    buffer[j] = inputData.getBytes()[i * MAX_LENGTH + j];
+                }
+                byte[] messageBytes = buffer;
+                byte[] hexEncodedCipher = e.processBlock(messageBytes, 0, messageBytes.length);
 
+                encryptedData += b64e.encodeToString(hexEncodedCipher)+(pages == 1 || i == pages-1? "":"\n");
+
+            }
         }
         catch (Exception e) {
             throw new RuntimeException(e);
@@ -145,7 +155,7 @@ public class Encryption {
 
     public static String decrypt (String privateKeyString, String encryptedData) {
 
-        String outputData = null;
+        String outputData = "";
         try {
 
             Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
@@ -158,12 +168,12 @@ public class Encryption {
             e = new org.bouncycastle.crypto.encodings.PKCS1Encoding(e);
             e.init(false, privateKey);
 
-            byte[] messageBytes = b64.decode(encryptedData);
-            byte[] hexEncodedCipher = e.processBlock(messageBytes, 0, messageBytes.length);
-
-            //System.out.println(new String(hexEncodedCipher));
-            outputData = new String(hexEncodedCipher);
-
+            for(String buffer: encryptedData.split("\n")){
+                byte[] messageBytes = b64.decode(buffer);
+                byte[] hexEncodedCipher = e.processBlock(messageBytes, 0, messageBytes.length);
+                outputData += new String(hexEncodedCipher);
+            }
+ 
         }
         catch (Exception e) {
             throw new RuntimeException(e);
