@@ -1,2 +1,4 @@
+encryption\AES_BC.class
+encryption\AES_BC_Tests.class
 encryption\Encryption.class
 encryption\EncryptionTests.class
