@@ -195,17 +195,18 @@ class EncryptionTests {
         SecureRandom sr = new SecureRandom();
         byte[] salt = new byte[32];
         sr.nextBytes(salt);
-        String digest = Encryption.sha256(salt, inputData);
-        System.out.println("digest: " + digest);
+        String digest1 = Encryption.sha256(salt, inputData);
+        System.out.println("digest1: " + digest1);
         
-        String encryptedData = Encryption.encrypt(privateKeyFilename, digest);
+        String encryptedData = Encryption.encrypt(privateKeyFilename, digest1);
 
-        Assertions.assertEquals(digest,Encryption.decrypt(publicKeyFilename, encryptedData));
+        Assertions.assertEquals(digest1,Encryption.decrypt(publicKeyFilename, encryptedData));
         inputData = "Hello this is a test!! Charlie was ere! "; //extra space
         
-        digest = Encryption.sha256(salt, inputData);
-        System.out.println("digest: " + digest);
- 
+        String digest2 = Encryption.sha256(salt, inputData);
+        System.out.println("digest2: " + digest2);
+        Assertions.assertNotEquals(digest1, digest2);
+        
         inputData = "Hello this is a test!! Charlie was ere! "
                 + "Hello this is a test!! Charlie was ere! "
                 + "Hello this is a test!! Charlie was ere! "
@@ -233,8 +234,10 @@ class EncryptionTests {
                 + "Hello this is a test!! Charlie was ere! "
                 + "Hello this is a test!! Charlie was ere! ";
         
-        digest = Encryption.sha256(salt, inputData);
-        System.out.println("digest: " + digest);
+        String digest3 = Encryption.sha256(salt, inputData);
+        System.out.println("digest3: " + digest3);
+        Assertions.assertNotEquals(digest3, digest2);
+        Assertions.assertNotEquals(digest1, digest3);
 
         
     }
@@ -248,17 +251,18 @@ class EncryptionTests {
         String privateKeyFilename = result[Encryption.PUBLIC];
 
         String inputData = "Hello this is a test!! Charlie was ere!";
-        String digest = Encryption.sha1(inputData);
-        System.out.println("digest: " + digest);
+        String digest1 = Encryption.sha1(inputData);
+        System.out.println("digest1: " + digest1);
         
-        String encryptedData = Encryption.encrypt(privateKeyFilename, digest);
+        String encryptedData = Encryption.encrypt(privateKeyFilename, digest1);
 
-        Assertions.assertEquals(digest,Encryption.decrypt(publicKeyFilename, encryptedData));
+        Assertions.assertEquals(digest1,Encryption.decrypt(publicKeyFilename, encryptedData));
         inputData = "Hello this is a test!! Charlie was ere! "; //extra space
         
-        digest = Encryption.sha1(inputData);
-        System.out.println("digest: " + digest);
- 
+        String digest2 = Encryption.sha1(inputData);
+        System.out.println("digest2: " + digest2);
+        Assertions.assertNotEquals(digest1, digest2);
+
         inputData = "Hello this is a test!! Charlie was ere! "
                 + "Hello this is a test!! Charlie was ere! "
                 + "Hello this is a test!! Charlie was ere! "
@@ -286,8 +290,10 @@ class EncryptionTests {
                 + "Hello this is a test!! Charlie was ere! "
                 + "Hello this is a test!! Charlie was ere! ";
         
-        digest = Encryption.sha1(inputData);
-        System.out.println("digest: " + digest);
+        String digest3 = Encryption.sha1(inputData);
+        System.out.println("digest3: " + digest3);
+        Assertions.assertNotEquals(digest3, digest2);
+        Assertions.assertNotEquals(digest1, digest3);
 
         
     }
