@@ -1,5 +1,6 @@
 package encryption;
 
+import java.math.BigInteger;
 import java.security.Key;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -190,7 +191,93 @@ public class Encryption {
         return sb.toString();
     }
 
+	public static byte[] hexStringToByteArray(String hexString) {
+		// Remove any leading "0x" or "0X" prefix if present
+		hexString = hexString.replaceFirst("0x", "").replaceFirst("0X", "");
 
+		// Ensure that the hexadecimal string length is even
+		if (hexString.length() % 2 != 0) {
+			hexString = "0" + hexString;
+		}
+
+		// Parse the hexadecimal string to a BigInteger
+		BigInteger bigInteger = new BigInteger(hexString, 16);
+
+		// Get the byte array from the BigInteger
+		byte[] byteArray = bigInteger.toByteArray();
+
+		// If the most significant byte is 0, remove it
+		if (byteArray[0] == 0) {
+			byte[] result = new byte[byteArray.length - 1];
+			System.arraycopy(byteArray, 1, result, 0, result.length);
+			return result;
+		}
+
+		return byteArray;
+	}
+	public static String decryptHex(String privateKeyString, String encryptedData) {
+		String outputData = "";
+		try {
+
+			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+
+			String key = privateKeyString;
+			Base64.Decoder b64 = Base64.getDecoder();
+			AsymmetricKeyParameter privateKey = 
+					(AsymmetricKeyParameter) PrivateKeyFactory.createKey(b64.decode(key));
+			AsymmetricBlockCipher e = new RSAEngine();
+			e = new org.bouncycastle.crypto.encodings.PKCS1Encoding(e);
+			e.init(false, privateKey);
+
+			for(String buffer: encryptedData.split("\n")){
+				byte[] messageBytes = hexStringToByteArray(buffer);
+				byte[] hexEncodedCipher = e.processBlock(messageBytes, 0, messageBytes.length);
+				outputData += new String(hexEncodedCipher);
+			}
+
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
+		return outputData;
+	}
+	public static String encryptHex(String publicKeyString, String inputData) {
+
+		String encryptedData = "";
+		try {
+
+			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+
+			Base64.Decoder b64d = Base64.getDecoder();
+			String key = publicKeyString;
+			AsymmetricKeyParameter publicKey = 
+					(AsymmetricKeyParameter) PublicKeyFactory.createKey(b64d.decode(key));
+			AsymmetricBlockCipher e = new RSAEngine();
+			e = new org.bouncycastle.crypto.encodings.PKCS1Encoding(e);
+			e.init(true, publicKey);
+
+			int modulus = inputData.getBytes().length% MAX_LENGTH;
+			int pages = inputData.getBytes().length/ MAX_LENGTH +(modulus > 0? 1:0);
+
+			for (int i = 0; i < pages;i++){
+				byte[] buffer = new byte[((pages == 1 || i == pages-1) && modulus != 0) ? modulus : MAX_LENGTH];
+				for (int j = 0; j < MAX_LENGTH && ((i * MAX_LENGTH + j) < inputData.getBytes().length); j++){
+					buffer[j] = inputData.getBytes()[i * MAX_LENGTH + j];
+				}
+				byte[] messageBytes = buffer;
+				byte[] hexEncodedCipher = e.processBlock(messageBytes, 0, messageBytes.length);
+
+				encryptedData += byteArrayToHexString(hexEncodedCipher)+(pages == 1 || i == pages-1? "":"\n");
+
+			}
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
+		return encryptedData;	
+	}
     public static void main(String [] args) {
         String [] result = Encryption.generate();
         System.out.println("Private="+result[Encryption.PRIVATE]);
