@@ -1,6 +1,9 @@
 package encryption;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.math.BigInteger;
+import java.nio.ByteBuffer;
 import java.security.Key;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -46,7 +49,7 @@ public class Encryption {
             KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA", "BC");
             Base64.Encoder b64 = Base64.getEncoder();
 
-            SecureRandom random = new SecureRandom();
+            SecureRandom random = new SecureRandom(gatherConsoleEntropy(10));
             generator.initialize(KEY_LENGTH, random);
 
             KeyPair pair = generator.generateKeyPair();
@@ -66,15 +69,25 @@ public class Encryption {
     }
 
 
+    private static byte[] gatherConsoleEntropy(int presses) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        System.out.println("Press Enter " + presses + " times, irregularly:");
 
-    /**
-     * SecureRandom random = new SecureRandom();
-     * byte salt[] = new salt[20];
-     * random.nextBytes(salt);
-     * @param salt
-     * @param input
-     * @return
-     */
+        long last = System.nanoTime();
+        for (int i = 0; i < presses; i++) {
+            br.readLine();
+            long now = System.nanoTime();
+            long delta = now - last;
+            last = now;
+
+            ByteBuffer bb = ByteBuffer.allocate(16);
+            bb.putLong(now).putLong(delta);
+            md.update(bb.array());
+        }
+        return md.digest();
+    }
+
     public static String sha256(byte[] salt, String input) {
         Security.addProvider(new BouncyCastleProvider());
 
