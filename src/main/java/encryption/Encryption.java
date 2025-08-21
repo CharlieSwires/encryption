@@ -50,7 +50,8 @@ public class Encryption {
             KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA", "BC");
             Base64.Encoder b64 = Base64.getEncoder();
 
-            SecureRandom random = new SecureRandom(gatherConsoleEntropy(10));
+            SecureRandom random = new SecureRandom();
+            random.setSeed(gatherConsoleEntropy(10));
             generator.initialize(KEY_LENGTH, random);
 
             KeyPair pair = generator.generateKeyPair();
