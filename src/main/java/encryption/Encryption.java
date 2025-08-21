@@ -15,6 +15,7 @@ import java.security.Security;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Base64;
+import java.util.Random;
 
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -51,6 +52,38 @@ public class Encryption {
 
             SecureRandom random = new SecureRandom(gatherConsoleEntropy(10));
             generator.initialize(KEY_LENGTH, random);
+
+            KeyPair pair = generator.generateKeyPair();
+            Key pubKey = pair.getPublic();
+            Key privKey = pair.getPrivate();
+
+            String[] result = new String[2];
+            result[PUBLIC] = b64.encodeToString(pubKey.getEncoded());
+            result[PRIVATE] = b64.encodeToString(privKey.getEncoded());
+            return result;
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+
+    }
+    public static String[] generateOld (){
+
+        try {
+
+            Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+
+            // Create the public and private keys
+            KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA", "BC");
+            Base64.Encoder b64 = Base64.getEncoder();
+
+            Random random = new Random();
+            byte[] rnd = new byte[256];
+            random.nextBytes(rnd);
+            SecureRandom srandom = new SecureRandom(rnd);
+           
+            generator.initialize(KEY_LENGTH, srandom);
 
             KeyPair pair = generator.generateKeyPair();
             Key pubKey = pair.getPublic();

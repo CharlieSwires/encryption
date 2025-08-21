@@ -15,7 +15,7 @@ class EncryptionTests {
     @Test
     void test() {
 
-        String[] result = Encryption.generate();
+        String[] result = Encryption.generateOld();
         String publicKeyFilename = result[Encryption.PUBLIC];
         String privateKeyFilename = result[Encryption.PRIVATE];
 
@@ -187,7 +187,7 @@ class EncryptionTests {
     void test2() {
 
 
-        String[] result = Encryption.generate();
+        String[] result = Encryption.generateOld();
         String publicKeyFilename = result[Encryption.PRIVATE];
         String privateKeyFilename = result[Encryption.PUBLIC];
 
@@ -246,7 +246,7 @@ class EncryptionTests {
     void test3() {
 
 
-        String[] result = Encryption.generate();
+        String[] result = Encryption.generateOld();
         String publicKeyFilename = result[Encryption.PRIVATE];
         String privateKeyFilename = result[Encryption.PUBLIC];
 
@@ -299,10 +299,10 @@ class EncryptionTests {
     }
     @Test
     void test4() {
-        String[] result = Encryption.generate();
+        String[] result = Encryption.generateOld();
         String publicKeyFilename = result[Encryption.PRIVATE];
         String privateKeyFilename = result[Encryption.PUBLIC];
-        String[] result2 = Encryption.generate();
+        String[] result2 = Encryption.generateOld();
         String publicKeyFilename2 = result2[Encryption.PRIVATE];
         String privateKeyFilename2 = result2[Encryption.PUBLIC];
         Assertions.assertNotEquals(publicKeyFilename,publicKeyFilename2);

@@ -1,61 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="encryption.EncryptionTests" time="0.944" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="encryption.EncryptionTests" time="2.075" tests="4" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.specification.version" value="15"/>
+    <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\charl\git\encryption\target\test-classes;C:\Users\charl\git\encryption\target\classes;C:\Users\charl\.m2\repository\org\bouncycastle\bcprov-debug-jdk15on\1.65\bcprov-debug-jdk15on-1.65.jar;C:\Users\charl\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.1.0\junit-jupiter-api-5.1.0.jar;C:\Users\charl\.m2\repository\org\apiguardian\apiguardian-api\1.0.0\apiguardian-api-1.0.0.jar;C:\Users\charl\.m2\repository\org\opentest4j\opentest4j\1.0.0\opentest4j-1.0.0.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-commons\1.1.0\junit-platform-commons-1.1.0.jar;C:\Users\charl\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.1.0\junit-jupiter-engine-5.1.0.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-engine\1.1.0\junit-platform-engine-1.1.0.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-runner\1.1.0\junit-platform-runner-1.1.0.jar;C:\Users\charl\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\charl\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-launcher\1.1.0\junit-platform-launcher-1.1.0.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-suite-api\1.1.0\junit-platform-suite-api-1.1.0.jar;"/>
-    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.class.path" value="C:\Users\Dell\eclipse-workspace\Encryption\target\test-classes;C:\Users\Dell\eclipse-workspace\Encryption\target\classes;C:\Users\Dell\.m2\repository\org\bouncycastle\bcprov-debug-jdk15on\1.65\bcprov-debug-jdk15on-1.65.jar;C:\Users\Dell\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.1.0\junit-jupiter-api-5.1.0.jar;C:\Users\Dell\.m2\repository\org\apiguardian\apiguardian-api\1.0.0\apiguardian-api-1.0.0.jar;C:\Users\Dell\.m2\repository\org\opentest4j\opentest4j\1.0.0\opentest4j-1.0.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-commons\1.1.0\junit-platform-commons-1.1.0.jar;C:\Users\Dell\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.1.0\junit-jupiter-engine-5.1.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-engine\1.1.0\junit-platform-engine-1.1.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-runner\1.1.0\junit-platform-runner-1.1.0.jar;C:\Users\Dell\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\Dell\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-launcher\1.1.0\junit-platform-launcher-1.1.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-suite-api\1.1.0\junit-platform-suite-api-1.1.0.jar;"/>
+    <property name="java.vm.vendor" value="OpenLogic"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
-    <property name="java.vendor.url" value="https://java.oracle.com/"/>
-    <property name="os.name" value="Windows 10"/>
-    <property name="java.vm.specification.version" value="15"/>
+    <property name="java.vendor.url" value="https://openlogic.com/"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="17"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="user.country" value="AU"/>
-    <property name="sun.boot.library.path" value="C:\Users\charl\Downloads\eclipse-jee-2020-12\eclipse\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507\jre\bin"/>
-    <property name="sun.java.command" value="C:\Users\charl\AppData\Local\Temp\surefire5725718265821306121\surefirebooter13392016837836876501.jar C:\Users\charl\AppData\Local\Temp\surefire5725718265821306121 2022-09-18T12-03-09_509-jvmRun1 surefire6604601601853626938tmp surefire_06445488595074171730tmp"/>
+    <property name="user.country" value="GB"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\OpenLogic\jdk-17.0.10.7-hotspot\bin"/>
+    <property name="sun.java.command" value="C:\Users\Dell\AppData\Local\Temp\surefire15507066912211005766\surefirebooter12831451758021436955.jar C:\Users\Dell\AppData\Local\Temp\surefire15507066912211005766 2025-08-21T14-35-27_959-jvmRun1 surefire11085389812817565968tmp surefire_017128001119074962708tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\charl\git\encryption\target\test-classes;C:\Users\charl\git\encryption\target\classes;C:\Users\charl\.m2\repository\org\bouncycastle\bcprov-debug-jdk15on\1.65\bcprov-debug-jdk15on-1.65.jar;C:\Users\charl\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.1.0\junit-jupiter-api-5.1.0.jar;C:\Users\charl\.m2\repository\org\apiguardian\apiguardian-api\1.0.0\apiguardian-api-1.0.0.jar;C:\Users\charl\.m2\repository\org\opentest4j\opentest4j\1.0.0\opentest4j-1.0.0.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-commons\1.1.0\junit-platform-commons-1.1.0.jar;C:\Users\charl\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.1.0\junit-jupiter-engine-5.1.0.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-engine\1.1.0\junit-platform-engine-1.1.0.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-runner\1.1.0\junit-platform-runner-1.1.0.jar;C:\Users\charl\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\charl\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-launcher\1.1.0\junit-platform-launcher-1.1.0.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-suite-api\1.1.0\junit-platform-suite-api-1.1.0.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\Dell\eclipse-workspace\Encryption\target\test-classes;C:\Users\Dell\eclipse-workspace\Encryption\target\classes;C:\Users\Dell\.m2\repository\org\bouncycastle\bcprov-debug-jdk15on\1.65\bcprov-debug-jdk15on-1.65.jar;C:\Users\Dell\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.1.0\junit-jupiter-api-5.1.0.jar;C:\Users\Dell\.m2\repository\org\apiguardian\apiguardian-api\1.0.0\apiguardian-api-1.0.0.jar;C:\Users\Dell\.m2\repository\org\opentest4j\opentest4j\1.0.0\opentest4j-1.0.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-commons\1.1.0\junit-platform-commons-1.1.0.jar;C:\Users\Dell\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.1.0\junit-jupiter-engine-5.1.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-engine\1.1.0\junit-platform-engine-1.1.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-runner\1.1.0\junit-platform-runner-1.1.0.jar;C:\Users\Dell\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\Dell\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-launcher\1.1.0\junit-platform-launcher-1.1.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-suite-api\1.1.0\junit-platform-suite-api-1.1.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="C:\Users\charl"/>
+    <property name="user.home" value="C:\Users\Dell"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2020-10-20"/>
-    <property name="java.home" value="C:\Users\charl\Downloads\eclipse-jee-2020-12\eclipse\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507\jre"/>
+    <property name="java.version.date" value="2024-01-16"/>
+    <property name="java.home" value="C:\Program Files\OpenLogic\jdk-17.0.10.7-hotspot"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Users\charl\git\encryption"/>
-    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="basedir" value="C:\Users\Dell\eclipse-workspace\Encryption"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
     <property name="line.separator" value="&#10;"/>
-    <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="C:\Users\charl\AppData\Local\Temp\surefire5725718265821306121\surefirebooter13392016837836876501.jar"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\Dell\AppData\Local\Temp\surefire15507066912211005766\surefirebooter12831451758021436955.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="15.0.1+9-18"/>
-    <property name="user.name" value="charl"/>
+    <property name="java.runtime.version" value="17.0.10+7-adhoc..jdk17u"/>
+    <property name="user.name" value="Dell"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="Cp1252"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
-    <property name="localRepository" value="C:\Users\charl\.m2\repository"/>
-    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
-    <property name="java.io.tmpdir" value="C:\Users\charl\AppData\Local\Temp\"/>
-    <property name="java.version" value="15.0.1"/>
-    <property name="user.dir" value="C:\Users\charl\git\encryption"/>
+    <property name="java.vendor.version" value="OpenLogic-OpenJDK"/>
+    <property name="localRepository" value="C:\Users\Dell\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://techsupport.roguewave.com/"/>
+    <property name="java.io.tmpdir" value="C:\Users\Dell\AppData\Local\Temp\"/>
+    <property name="java.version" value="17.0.10"/>
+    <property name="user.dir" value="C:\Users\Dell\eclipse-workspace\Encryption"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
-    <property name="java.library.path" value="C:\Users\charl\Downloads\eclipse-jee-2020-12\eclipse\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Users/charl/Downloads/eclipse-jee-2020-12/eclipse//plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507/jre/bin/server;C:/Users/charl/Downloads/eclipse-jee-2020-12/eclipse//plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_15.0.1.v20201027-0507/jre/bin;C:\Program Files\Java\jdk-16.0.2\bin;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\charl\Downloads\apache-maven-3.8.2-bin\apache-maven-3.8.2\bin;C:\Program Files\nodejs\;C:\Users\charl\homebrew\bin;C:\ProgramData\chocolatey\bin;;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\charl\AppData\Local\Microsoft\WindowsApps;;C:\Users\charl\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\charl\AppData\Roaming\npm;C:\Program Files\Oracle\VirtualBox;;C:\Users\charl\Downloads\eclipse-jee-2020-12\eclipse;;."/>
-    <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="java.vm.version" value="15.0.1+9-18"/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\OpenLogic\jdk-17.0.10.7-hotspot\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\Dell\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Dell\bin;C:\Program Files\OpenLogic\jdk-17.0.10.7-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\dotnet;C:\Program Files\PuTTY;C:\Program Files\Git\cmd;C:\Users\Dell\Downloads\apache-maven-3.9.10-bin\apache-maven-3.9.10\bin;C:\Program Files\nodejs;C:\Users\Dell\Downloads\ffmpeg\ffmpeg-7.1.1-full_build\bin;C:\Program Files\Docker\Docker\resources\bin;C:\Users\Dell\AppData\Local\Programs\Python\Python312\Scripts;C:\Users\Dell\AppData\Local\Programs\Python\Python312;C:\Users\Dell\AppData\Local\Microsoft\WindowsApps;C:\Users\Dell\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="OpenLogic"/>
+    <property name="java.vm.version" value="17.0.10+7-adhoc..jdk17u"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="java.class.version" value="59.0"/>
+    <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="test" classname="encryption.EncryptionTests" time="0.549"/>
-  <testcase name="test2" classname="encryption.EncryptionTests" time="0.204"/>
-  <testcase name="test3" classname="encryption.EncryptionTests" time="0.034"/>
-  <testcase name="test4" classname="encryption.EncryptionTests" time="0.157"/>
+  <testcase name="test" classname="encryption.EncryptionTests" time="1.314"/>
+  <testcase name="test2" classname="encryption.EncryptionTests" time="0.401"/>
+  <testcase name="test3" classname="encryption.EncryptionTests" time="0.233"/>
+  <testcase name="test4" classname="encryption.EncryptionTests" time="0.117"/>
 </testsuite>
