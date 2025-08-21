@@ -78,12 +78,14 @@ public class Encryption {
             KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA", "BC");
             Base64.Encoder b64 = Base64.getEncoder();
 
-            Random random = new Random();
-            byte[] rnd = new byte[256];
-            random.nextBytes(rnd);
-            SecureRandom srandom = new SecureRandom(rnd);
-           
-            generator.initialize(KEY_LENGTH, srandom);
+            SecureRandom sr;
+            try {
+                sr = SecureRandom.getInstanceStrong();   // may block on some systems
+            } catch (NoSuchAlgorithmException e) {
+                sr = new SecureRandom();                 // safe fallback
+            }    
+            
+            generator.initialize(KEY_LENGTH, sr);
 
             KeyPair pair = generator.generateKeyPair();
             Key pubKey = pair.getPublic();
