@@ -1,63 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="encryption.EncryptionTests" time="1.834" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="encryption.EncryptionTests" time="0.473" tests="4" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.specification.version" value="17"/>
+    <property name="java.specification.version" value="24"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\Dell\eclipse-workspace\Encryption\target\test-classes;C:\Users\Dell\eclipse-workspace\Encryption\target\classes;C:\Users\Dell\.m2\repository\org\bouncycastle\bcprov-debug-jdk15on\1.65\bcprov-debug-jdk15on-1.65.jar;C:\Users\Dell\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.1.0\junit-jupiter-api-5.1.0.jar;C:\Users\Dell\.m2\repository\org\apiguardian\apiguardian-api\1.0.0\apiguardian-api-1.0.0.jar;C:\Users\Dell\.m2\repository\org\opentest4j\opentest4j\1.0.0\opentest4j-1.0.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-commons\1.1.0\junit-platform-commons-1.1.0.jar;C:\Users\Dell\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.1.0\junit-jupiter-engine-5.1.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-engine\1.1.0\junit-platform-engine-1.1.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-runner\1.1.0\junit-platform-runner-1.1.0.jar;C:\Users\Dell\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\Dell\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-launcher\1.1.0\junit-platform-launcher-1.1.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-suite-api\1.1.0\junit-platform-suite-api-1.1.0.jar;"/>
-    <property name="java.vm.vendor" value="OpenLogic"/>
+    <property name="java.class.path" value="C:\Users\charl\.m2\repository\org\apache\maven\surefire\surefire-booter\3.2.5\surefire-booter-3.2.5.jar;C:\Users\charl\.m2\repository\org\apache\maven\surefire\surefire-api\3.2.5\surefire-api-3.2.5.jar;C:\Users\charl\.m2\repository\org\apache\maven\surefire\surefire-logger-api\3.2.5\surefire-logger-api-3.2.5.jar;C:\Users\charl\.m2\repository\org\apache\maven\surefire\surefire-shared-utils\3.2.5\surefire-shared-utils-3.2.5.jar;C:\Users\charl\.m2\repository\org\apache\maven\surefire\surefire-extensions-spi\3.2.5\surefire-extensions-spi-3.2.5.jar;C:\Users\charl\eclipse-workspace\Encryption\target\test-classes;C:\Users\charl\eclipse-workspace\Encryption\target\classes;C:\Users\charl\.m2\repository\org\bouncycastle\bcprov-debug-jdk15on\1.70\bcprov-debug-jdk15on-1.70.jar;C:\Users\charl\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\charl\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\charl\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\charl\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\charl\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\charl\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;C:\Users\charl\.m2\repository\org\apache\maven\surefire\surefire-junit-platform\3.2.5\surefire-junit-platform-3.2.5.jar;C:\Users\charl\.m2\repository\org\apache\maven\surefire\common-java5\3.2.5\common-java5-3.2.5.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-launcher\1.10.2\junit-platform-launcher-1.10.2.jar"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
-    <property name="java.vendor.url" value="https://openlogic.com/"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Europe/London"/>
     <property name="os.name" value="Windows 11"/>
-    <property name="java.vm.specification.version" value="17"/>
+    <property name="java.vm.specification.version" value="24"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="GB"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\OpenLogic\jdk-17.0.10.7-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\Dell\AppData\Local\Temp\surefire7156731778933946012\surefirebooter2261562488752263263.jar C:\Users\Dell\AppData\Local\Temp\surefire7156731778933946012 2025-08-21T14-52-47_135-jvmRun1 surefire1086124318676465770tmp surefire_016868428188859463805tmp"/>
+    <property name="sun.boot.library.path" value="C:\Users\charl\Downloads\openjdk-24.0.2_windows-x64_bin\jdk-24.0.2\bin"/>
+    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter C:\Users\charl\AppData\Local\Temp\surefire10586699737058202073 2025-11-18T20-18-38_567-jvmRun1 surefire-20251118201838698_1tmp surefire_0-20251118201838698_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\Dell\eclipse-workspace\Encryption\target\test-classes;C:\Users\Dell\eclipse-workspace\Encryption\target\classes;C:\Users\Dell\.m2\repository\org\bouncycastle\bcprov-debug-jdk15on\1.65\bcprov-debug-jdk15on-1.65.jar;C:\Users\Dell\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.1.0\junit-jupiter-api-5.1.0.jar;C:\Users\Dell\.m2\repository\org\apiguardian\apiguardian-api\1.0.0\apiguardian-api-1.0.0.jar;C:\Users\Dell\.m2\repository\org\opentest4j\opentest4j\1.0.0\opentest4j-1.0.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-commons\1.1.0\junit-platform-commons-1.1.0.jar;C:\Users\Dell\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.1.0\junit-jupiter-engine-5.1.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-engine\1.1.0\junit-platform-engine-1.1.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-runner\1.1.0\junit-platform-runner-1.1.0.jar;C:\Users\Dell\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\Dell\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-launcher\1.1.0\junit-platform-launcher-1.1.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-suite-api\1.1.0\junit-platform-suite-api-1.1.0.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\charl\eclipse-workspace\Encryption\target\test-classes;C:\Users\charl\eclipse-workspace\Encryption\target\classes;C:\Users\charl\.m2\repository\org\bouncycastle\bcprov-debug-jdk15on\1.70\bcprov-debug-jdk15on-1.70.jar;C:\Users\charl\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\charl\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\charl\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\charl\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\charl\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\charl\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\charl\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="C:\Users\Dell"/>
+    <property name="user.home" value="C:\Users\charl"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2024-01-16"/>
-    <property name="java.home" value="C:\Program Files\OpenLogic\jdk-17.0.10.7-hotspot"/>
+    <property name="java.version.date" value="2025-07-15"/>
+    <property name="java.home" value="C:\Users\charl\Downloads\openjdk-24.0.2_windows-x64_bin\jdk-24.0.2"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Users\Dell\eclipse-workspace\Encryption"/>
-    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="basedir" value="C:\Users\charl\eclipse-workspace\Encryption"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Dell\AppData\Local\Temp\surefire7156731778933946012\surefirebooter2261562488752263263.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="17.0.10+7-adhoc..jdk17u"/>
-    <property name="user.name" value="Dell"/>
+    <property name="java.runtime.version" value="24.0.2+12-54"/>
+    <property name="user.name" value="charl"/>
+    <property name="stdout.encoding" value="Cp1252"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
-    <property name="file.encoding" value="Cp1252"/>
+    <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
-    <property name="java.vendor.version" value="OpenLogic-OpenJDK"/>
-    <property name="localRepository" value="C:\Users\Dell\.m2\repository"/>
-    <property name="java.vendor.url.bug" value="https://techsupport.roguewave.com/"/>
-    <property name="java.io.tmpdir" value="C:\Users\Dell\AppData\Local\Temp\"/>
-    <property name="java.version" value="17.0.10"/>
-    <property name="user.dir" value="C:\Users\Dell\eclipse-workspace\Encryption"/>
+    <property name="localRepository" value="C:\Users\charl\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\charl\AppData\Local\Temp\"/>
+    <property name="java.version" value="24.0.2"/>
+    <property name="user.dir" value="C:\Users\charl\eclipse-workspace\Encryption"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\OpenLogic\jdk-17.0.10.7-hotspot\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\Dell\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Dell\bin;C:\Program Files\OpenLogic\jdk-17.0.10.7-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\dotnet;C:\Program Files\PuTTY;C:\Program Files\Git\cmd;C:\Users\Dell\Downloads\apache-maven-3.9.10-bin\apache-maven-3.9.10\bin;C:\Program Files\nodejs;C:\Users\Dell\Downloads\ffmpeg\ffmpeg-7.1.1-full_build\bin;C:\Program Files\Docker\Docker\resources\bin;C:\Users\Dell\AppData\Local\Programs\Python\Python312\Scripts;C:\Users\Dell\AppData\Local\Programs\Python\Python312;C:\Users\Dell\AppData\Local\Microsoft\WindowsApps;C:\Users\Dell\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;."/>
+    <property name="java.library.path" value="C:\Users\charl\Downloads\openjdk-24.0.2_windows-x64_bin\jdk-24.0.2\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;C:\Users\charl\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\charl\bin;C:\Users\charl\AppData\Local\Programs\Python\Python312;C:\Users\charl\AppData\Local\Programs\Python\Python312\Scripts;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.0\bin\x64;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.0\bin;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0;C:\windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet;C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR;C:\Program Files\Git\cmd;C:\Users\charl\Downloads\openjdk-24.0.2_windows-x64_bin\jdk-24.0.2\bin;C:\Users\charl\Downloads\apache-maven-3.9.11-bin\apache-maven-3.9.11\bin;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Program Files\NVIDIA Corporation\Nsight Compute 2025.3.1;C:\Program Files (x86)\PuTTY;C:\Users\charl\AppData\Local\Programs\Python\Launcher;C:\Users\charl\AppData\Local\Microsoft\WindowsApps;C:\Users\charl\AppData\Roaming\npm;C:\Users\charl\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="java.vendor" value="OpenLogic"/>
-    <property name="java.vm.version" value="17.0.10+7-adhoc..jdk17u"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="24.0.2+12-54"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="java.class.version" value="61.0"/>
+    <property name="java.class.version" value="68.0"/>
   </properties>
-  <testcase name="test" classname="encryption.EncryptionTests" time="0.914"/>
-  <testcase name="test2" classname="encryption.EncryptionTests" time="0.629"/>
-  <testcase name="test3" classname="encryption.EncryptionTests" time="0.192"/>
-  <testcase name="test4" classname="encryption.EncryptionTests" time="0.097"/>
+  <testcase name="test" classname="encryption.EncryptionTests" time="0.256">
+    <system-out><![CDATA[Encrypted(9us/char):wKdfgeGx6XuaZAF/ToU/LIycasW9J33LZEss1NxOZeXmcqUWb+p+kehP1/bYiwRQtgt3Zh1y1lsWZWKAwAj+eDxoNR23XQRr6g9smHkLbOWcU0PupSKvrAe+mk4H0gT+MaaXIgqggMFtHd5mZp7qhiNnyVW3t+DU3qrrGODrK4E=
+JU9u315YWHSVEE9JHos3ynYmgeAPupQDC7oYhCWcS9wnhvRZeKtk4cesYmAPrPF0ZotLxbUsofX10Dp17w9RjVAjBx53yJip/8hP4Ft2oC2mHlT0Yje/r1QBdE+hkY0gu/AX1B9GavWK5yOApR7DPRJn6IAC5TomiSzouUG7McY=
+sJL1Yk9I4rZ4hQ+O9kUDHyFQh3SwbEk9B4NUIEORfGX/X193F0/IB8EPBZVJ3lLCfPvV0w8QvS5nriIBGhEARrvddyyHSfZTDAmRC9Scvd1rPjw8XepEy45l/+cZWklAnkDdY2euWGQO/6DLVlycjUhc6xLdbakoCssUlijbb+8=
+bYp93vOIwwwrHAfCrX0dmFG/dox6bD7K3bE5tMubBbFSPmMcAuFGLaw2gnCTt2zIbMTMouuczLKLiuR9rB4aI1r3t7adrjkwLUooExuz/+yUmsLmii7vOcrzwyLRkQ3Ha/XAEtHrqkbCwR1OhMvWrfeGiMHNCKUKLHi98SqEYsU=
+RLlstqxPPytvl7hFJQ8xdO5HCy5L7IjwhDFgcL9UK831S6OZ4Bx3VeY2jKSGDFc4R4ZmQBiFpR/hKvao4akNiBYQFWieY3ypfEJk+jh4qVSb65gkPGgSl30xF2O6KDoYBJ8WsNv/7HO7e/JqVscppiw2VjL407MoYLjHQ85/s0g=
+Ar4V7Mb9R0fJet0WO3qczxa00ItNZXpTacq0JdnfLujDVPKG4ZwZfRnHHATtWDHn49AEkFJhUFxK3ctQzCTdrAzCeRfYK7n7MXcOMRIUkpPI1msNqetZvFvbBuYliOtVRCR+rwe8/mpd0UB+oUU8TxCrnoMcPZhOWMJWTW6leAU=
+a3MCnG5o4+McENJ/u0r/f8UG56AlboelJ1YakEtG80ksFl+pYKvQzn418SIJIoSCNOHeNzDhqG2B0xwdD4VPqxpUq7afB5wLdRpOTxbKkBbfNuisY+fZSRkMe0OuFMImBLPhx0rxM9VGk6xe6zv/xUXa+/dKTkf585Y5/It1M/0=
+KNPc0HsgSzTtvl7ZGredcPw6avCN0PyV3oF8Xpu4TZK1UHRDoTaG0BNa306LM4QiGO07hSuo2BSxZSZuAVekXknsCrhCpyfk8jV4MYuYP6xjTaMsiuBM8+CqGrFcqtGTPKq0mCphvVDjGQncmNZtDN7hjZ3ckxRQ5sLxjiW1YJ4=
+vWeyEnjiT4rI4uwBOfDaJvO/XXzbIsTYOz8+p9B+CXjbrQknNywwdXcUZDiuPy1DcPQ9KZzF8xTxh3rCoEZc0s7z/KaUOuD9odO+Ng5CSBzFVvePOGLbfDSb7vyqJw9lWdYRVA3CLLfngMMFqSZvS8b8UPNJSGLXzfpVrcVXPHg=
+GDzpSXY+xHQUP6Lt82IMH3Yfw5otnm7YNdlvqpUjkhUXpwfGyUOLFAmeKSIP1Ua1dlPkyWowqZpqZAENx43s7U7Bn7rABrGZB/12ObFaVI04sZp9n3G1gicbk4ZtQC8ZLEJd9MOys+sY8gZFaEadTVJnmJ9gfMXAMU7zSGS+5VA=
+pvXZgxfOAcxbB8B0ScotDN0s/M2oVtst6OKBdPQvhAPKKfIMxJxHaZaSLEPyFq26RwNpeasE0mXzoYqYYuhujx90sOICqiVbwbxMGOcimPVuT+ITY+b2f0cLZAGMTXcyr9hKHen5M2oLYi3luTlMl0J/u+hFBkXbRGBGPOpoiYc=
+buWLJU/DZ6LTYMAwES0GuusOwhaF59ZJGzCzzpiMaxetKyTx4oXBN0DDJTiBqNnF1YKZFIkrOsOT7BTL7NfT5SMtTvOz60bKzCcwQGUfoplYiws45EvmpfzqdAOm8rASOAZaHCXMqqFLhVMwIL51W+Ye7bdEHJqPJjuiQUafjLI=
+VpjOqQyvbpdOiL0Zy9p9h0eIti75MAfoK2/xxGbKj8V0wM9obETea3dvALTRXpjHJ5syQG+mrt7ezmpC580LcVHNWJJUBuGWYBvx/LmEKT+06rovm36f6MRD4mHKkdEa7mpSpYniECHq6LHpRmJCZbAhTwyrNE2E4ixfDD1m2HU=
+mwo644JxOg+rDu4zYMAtGcF7OqKdwjkKOIl2KvVGL9zve7Z1ZdOy7q+w8lT/emYo78z7asvTSumg1oT/R1Gl/F6W8xMOAulUPhsXrA1RehmyFAhO/Kxy1ngX5C2vDn9wURiWr+fYglmkJat5A5BxQ3BDeVAisCpHSbDGoLWhQvU=
+onUOHW6ZH1aR8XvQWKiYV4044pKlJaC5zNI6jpMoEXC6+pD9jimPaT+HRRxL+Vu/jWxOIGK65yu3qEy2NfQT4GahleOFu2q7d9X9PkyIFszCSuhhoRrsAry1u2fsgQHYVNn+2e34zL8duejUgOq+PM68wMDATxzSVs338fvHrVM=
+t/P4niFXeGSTqwDtcvOhgQPa/Xvu54yYaISNKbaHuEVKLIbAgCmNOoGf6LgQEFExUpJZ66wJibw4wsvRyZogZXhDyGPzyjyy691yyweIfPp2mKBy1OuRXQG3lvZHKad6S6ViUeXeEDCZ3pFi/dIvBwJ4gF7WBGindiJiJ1ovi0w=
+opkGrsAcxr6/deU1GqaZldNtkimoZNCsTF5X1nOtnBhturuMTXu4jho1i0zZV25sFDUuIMQU3BAomBG9aMDepIKilFS3RxRVE3lX8QENkmmep3l6MlkBpa1NatM+YD2JwJMD6fWzw03GTe2z3Q97DgFeKrEbcnvjcDEQhuFvrqI=
+nL1QET/aMEntaA1ZtpZcMtVkCWle/luf62uXapEw+s/Gh8jeMmnoxtlLFK0wgPLqqlISTsf0zT+511XK7frmj0xgsp36A3kNzmf3MA6/4XIlaIazlnb9gftHaVmZ9Veujc1qTwG1ph98+rulcljn+aR9IXQeoYC00tyJbT54Ct8=
+QQFU6z3CtD7TDERb+V9xgewAbcbZuaNbgsnSNzLEpHksJU4nNE7ZDClg4kA1+FynfleWkiURUb+hMujpNdKLtBX/0ZXwwCybbGdWg/dp40863UUZva9q06C+gKX3Djs3+icchB2GStlzWRtimZEHpU9paOIQIzQB0+sjXw3R16Q=
+cmGe9KtG+XjsCiOEF2uGj/gEEkA/TgCMq9KP++gnC2aAsY3V+mPA9UpBgb5m7E9aitjSeUOaoL8XT+gf/8z4Vn7Pf6QXFBOLeDNzrCjVJ0G9kUQdhblkj0G1ZBlrmVQO30ZH1kjlzdDa5D+zidxadGDZqKFq3kgDUpaupxWpFUU=
+DZONQianogbfe0qrJDip/nzNLl+v6tBFVmWOhEzdySqZbsiBq+mNE7LiSrsvHCtR4N1A/9RASP6lTYno7TFXhmu4FU4BJeRdWlt06NL4ClOVu76+VCuExYjkwEkp5oq2S1LBkxieL/uRqfLoWNIKeKWxzQZChZIMxGw7T+1Hzhg=
+QAhZI0Vu71psBMiTyXX+mQCS7ydhyY/wcUM2Y5SfISoZ5377x7AdY5tGDXUyBEJn3xkPDJoBPyCwLmlf36ACjwo5X+Vdiy0YK7U07OSvq4GbV/SywvtbRFe0rpl/Gg0UC+yWeoiYoTrfCis0YrVvV+LNHBWKkqr1UH/UD3jagZs=
+AMFEAKAc4MvSEHGjQFsd0Yo9S7tqxvajjJYytN4Gt0PFUAUMYGhxGIrKcRiqh6VARm49av+cjMj/w2KaLuRKzG/b0dwj72u+ElNIcWZ/+8YrhheFYu1jQagepuAZAzZsmFG220RCNH5smQ5/D4ivCWugAiHJQfzCVWRI3zMpEPI=
+YnjEIb+CnCIhm2bI99xqXIWddFdNebnjcSnLT8icoP5wp3kanxOv/GKabt6hOnnG1NZJL8KRDnMtE9jB1tCXe3/9ZfMRvLGwziGvzSkdOVesXjxKtCTNUHjsnOPX2h2QtS0KQpw2OX4wOuuyHf3J6PtsPWaw9y63jxIpXirkqOg=
+Ggb6RU51q0OG1FEkdxOnqumHhYYiQz8ZzFYI7dT4eK/+Ver9kpXkLlAgoF3nQ8W4agTB8lCjua4sRzJBxA8YyW16a40CNMu0XlHVfNTHDKk/NRA6wj4xnbgF79/IlAepUoiMqRzdT46iR6HQtwMBqGayAPbMY85ZcFjGk0IGjL0=
+Ctiz8h5Z/QAQIID3g+TA/eVr7CbGIzf4uN4bP9c4chU7k2rgdSyh4bSuke+wadcE/GaEinXqZQV9nExmBbnRg+CyFPqISLqYdtDNBternjGzsIYrTF/o87ZFRdaABcGmMHXzOnXzOJLA/SgGgYbJFxrv/Q4NH8R8k0vX/gTv0Mc=
+YSj9jQPdVvbAgNK4+WBsc6F84ICCuVOgB7wY2XSGEMXZciMlXI4WhBCXVMFlY2iSx8IAjtPwzhAp5heSzeI+4RAq5uoFdbfULaeI2mh3GzrA/Xs1cmPRSqmu9D3HZ3EScAzla4yJm6hX3zAbhT4BZ++goBYHD+DAEvwj8LbbG+4=
+BKBnxZykXr0prtlSOKGoyI2XMK/BzjX5/F2TNavxhNRo4PY7jan3hKBbhMnuD1pEQU64BZg6Ewh32u6hfchri6Z5cGt3KxP0izH7/BZPgYWhuNlLX8v6pcfjZq56xmZex4cbg0Su+Hm3HNqO1FqPejMDNIuYSSGNHH/+9zUMhoI=
+DLu0WiP4evHKqUFaKaoXlmZ+PBW5UcuGQLrefXXeE/XeJ7V1yf4aXadK19/SRAPbvKBB+NSV34VsJZuDQ96KSmK01AQ0F6SskfjBW5WFtbZjyHkUDfx+Y292l+BoJbeXqPapKbTZ6b762KLMxjjgNcPcfNNMpN/xHTMtSoc7fmI=
+JxeMQu9XQAnibTrWGwEw+qP14YO6hm/yF5lkOC7tB313C/Tkix8c1bldm/8xFRHYS34/EOFS1KKsOOC9BQVpEFaJUe/yY/4Y7dTt3E2yq8vnLukYgEnhNPNO8TGqR/kNqpY8mTgeQGV1zpWJLt9rr+IaTAf8fgTZJKq4ntmCxYs=
+nRLcoSsLqjfIC52dT3OXIq73h6rB/fx7TSDVH8vSGVy9J+OnE7HV/k8WTAnzS5KA3gUshkFgGGKnifwTWuDUCLXS83HD6DXQhlqJlxZIm+ew5AauLMBfzOGbkZ/lXVQXbKz5w+/TD5RK6dJ1sxNcLdvLJmOPCA/xQMmrRsSpXQI=
+tHH6veVXrc8zE41FXaR6fgsfXeYwT44yP3sH+k4Y7yed8XnhKufPnkKlIvHuOjEqQRYKR/R3CYKFXYUU61P8k2eSpk3AgNsByDBarg+F40byjQO9FloJOWK6KAKVt6LgC7+Hc57lIwFxNqM8aHw6QebEVuqqN7JFMRoSNQHlmlc=
+Evq7vUNqqIffWgUOllxrJNfJ20MLKGapboqHOovYR+r2lWjtxNBBsfX1qY3ug/JCVmjvXEChBKdcDfsnuelvM3dHDuL1ot4SwryE93T3gSlqJJhgrL7bydL154OddC9c2UuznD5uh9Zp3/pvFv5YSa3M4Z0T8Rbyf3kGk4+qvYU=
+qtnQx4+gVS7F6THyVo1HJU3WJ0Ko5niwW1N+aBvLmB/aTkTHg3EPGRLXBlUxICXlpubjkT2xL2BDbNGAe6qUWuJYkjpNnDExQsrD9SSGN3MF9KLa3JHk/ql9mARCyBKAHmKyAzXwxGf/2VJCo4CQEv2x4g9al53p/9TG36ioWmM=
+vrHlnQ205Bfxg2QhqFi+Vye35fAxW0OZuA/D2+u+gLtM9hOStcU42tlkSVo3bvbPqSEuo4tIKMvNU6iWV4U+grpN9IdG38g617/EWT9A58LQs9Pz9A6DKUlLwwi3/oeUQzVV32yaUgOOMcT6KPRAMyIP7fRD92csXGcGkwGhkJQ=
+kZd0Zd9ogqj7htWUPguRUMT5Te0pvGh67/rdMRT8dm/yqg3VQuHm33MO12nNpIG31TlkO/8OTMlr/J1Xl8kMRcAdtjAV+rAgbyLpFRHwAIQzI/+UJ/OKnYBRiyEXpNBk2jiqCCf5FI3zQLb3qSkRiGBbwqCMYXO0g1qZItW2E8U=
+ZjDipqwaJw2lEAw4nEjgnMAwt7GHRAVfUVXP8JAN3LQ8QYmZ7xb+79fr+1/XHBUdWxYQoE8bI2OSo0EtLIF7OP4ZXBovfIifkOoIeHA5F9BTcnP8MyUKbrCosTAoX48EZ7l/kSmsNXvh6L17zKI+PWVHEcYPhXHWjqzYr7Uck1Y=
+Kwlnoo7I2tvuD9FH4rDWr9Zl8xmevGg6M8BEVd+p9TFdIkBxEAAGiJ2RhZEMvPe6JbYU7ZKhRaHoG6MXxRsWMqmT4l56Ju2tRDmjvKotFO4T1Yp1oL4hwLthzw8ghk8A/PocbGiWPzyCZSqb9Jzrr+q2iL3QgMF/bR6VHoVn8tw=
+UjMxfzEkedU1bF2bXa4eAez2Bb6stkzsjdeHrOvfrzejiiyJnIkrvQZsqAQjVINP9RHWJsn0dacd1o6o+/ZmwHNeQP0LWmaicVP97CaZl6f8IwqwQbWkMqxuqQZWZ64R3sTWRJ1ULpWO7RRcZ4+CVw4b7gLii0gAdcWRaMqgOaQ=
+e14QUVaMQwKi0QNA44FP++7IMycHLHDa6I3Bp+8wEagigrpcVmhf7jdUBRzkCgvt3+IjM8Bnc7pWq+XYbH7pE3Q2ECQGM7LaG5C9PVTbs3e2H4wm0urQWEmmc3aH2ohnn7CDZbsWBGMaNJeRzO60j3ec/jfayUrqmUKWwdtv10Q=
+q+C4tJEAuQk5XfGg71VrZzdfsnmn6uAFB48WI8OVC+UahYSx4lSPsE0fNCnC2OW63RcrtQFUyCSntbolfx64j3m6wcUklq8/5kmqevUxjhDHYW60j793ubOSEEU/resNgKgQUBx3W1cWeeE4cUVIioj78l2pPSLxkxGVMBPXYWU=
+KR2ibgCJC6nBTcpYQOqGNBdZItJ3NykGCG/sTAk9dd2ejnIbxdSznn+ivRjuKu/NQhxiGccNUaqk2C+A4UGbiKPWSFrbzqT9ICcoFiGo2reVbofGdqOxJnnONshi3R2wDEobwLjD5HBfAPYdy1GTCPHNBqjus47xKG4EuayyvHs=
+svycmv9XB253uonNN8NYnKItHo2KccaF6NVIimURLnqYtICA/5cBUjcnsEPmVEvV5SuWE0teoYmHkzoL5LhuO5D/f83Ohk+0xWL3zpPiljX4G97lB396RjG78ZGknCaB/IAr6nURVVwdA4dnouF0VffYkwsEPeISTNF5z+QPjro=
+Kc8i/2MG5+g378tGE3Iw+mDNl1v+GUEeifQPPQLHjuALc67GspJw9uVIl4dShGU2MBmd9GWE5kNS/jGZkWe5z3XL8HrVMT/WhXfnqpjBZQT9IQ9aabOLxGKdpZ1f0sHbVg3euOkTMbiLxyqLsQQnlfTi65xBdwkxIJsp4hrI0qE=
+TfMW3LLlTojX2DbSDtCOEkqojjV3t8zEznZbb8szQEL1eZl6eiHkWDYGgf7npfZefWuZB83tt38CttGT5tvadvAqpV+hvlgMJ5sqzMOwEaqaQ859VfQnavV9EhqmLBUsxovD8H1066UFT/Y27ZB/7LTvTAkSfO9JSFyqakzxLDI=
+urPia4Hp/PPSsnyRc5pYv4bRHXmn2E8x9xiy4rdeH7T81Rc+YTjFpTzJjbH8gJKvAp1RmXVL99VaFhQXOP2qVih8Zg5tFPc5vWEK4rOvwQyalniRVdGGgm0BnmiOLmQ19+5raRTRuWFymT4+hMU69uoFeBp/ZNCfCJFVkF4nG4w=
+iKmBj2jABUellWQEE8oGkYonNQa2ZqfPBM7xYeJKZz6vFEO3Dk30jhZ9his01GnyubTZblffjhX/auZkN96FsU6MiVu3kBlzuvrov6g2nKpr0sjxpZeBR5egj94N/0cmvpYMG/3KQ27Q6jMeHZKaKxp7qK+l2/+MthGmeWNomvQ=
+ByEacrYbMfISsrvVtyxdtWuRMdaZoolP58VwwcZZ5d4A3mPhtSEcKh2mtV5qbzBNVvzb9n0HGMgNZ1KhNYb27X8SAZjiD9IWL3rRvBsncs+x92rFRWWB+zQtzkLak2BjdiFRk9yjoaO8GoqzsLx2iepW34BgL4I8jl319+ba7T4=
+AWpGuIjVi/LX2MaDFElaIi0tbnJM+nLelXucQ5c1A/sZzQmGMLRRa4ex1fDSsqg98eLzerJT1fFIz5HoPwNZtyMZ3tK6aA6s/bx85LP15N6gBDW7Kjodaju3cAzCigCB16s64ryGzSlxQBxh5lCldQD/FjDu7JkFojMZqnrfvLA=
+FGGiRv9M2c9rtqanLztS/w1RxUUCwORoIBEknZFF3OC0KzeOOkCfG54z1OQUiTFAE8LCNHYLL4EU6A/okReDB8sFimRbAPRnkIcBLhDOTSoO3QUuIdsGS1loWLBkpf2KS1D3Mdq9uk+elmnOtTzJMdQARDdD5upUeRXvKSs9pfE=
+MXH2dI3LVUi8v3AMVcbo9rTajX8QwObBAWRBUZxnnj4x6XtWDIiI5JEJ8VEHvCmL03n7gEiYoMQv5+LarmsofjyFy3LRCUjHTlmWcC8zwYJS5g42dlISj2wnK875lM8shEFQhkD56nsDk0IY6K911zX/t0zCP0W7cZVRen0pbc4=
+A+DPn73dSHETfiCphz7M5v6fNichNPHBbB/z6Y/AdikiTD/7FzjXz+bx1kFU7MEttDI2wutPcDqh+l/OD44TdHrkGHd5ER0/mVH4Ua3z5n8F7t3DAUGhiYK73P6ee1uhX1DHZ+i/eRplRf5igY/BSmlpE4s+RY2i3XAHfdR+iuw=
+Nq0UG/4flUPshydBVpiYoTjcXSDyCoU3JfWZW3VqVQ2/iHf1Tq10kKkG2MQYmHgi8FiNoC4HrrVH4OMlUyitI+CjWheTTi0/DeL0V6F6m9//hYdKwV5ITa92YIgYkLHD8bc0qUyWgujv4RQqGuiUINPocn8XLK5Q6jnPs05xj00=
+I3vCO3DAEGs0EMo1PxIIYQRSre4DFEjuSO+DXKKslwk9c+nAwjncO+DiGxMLGnBrs3kqHRpT1nYZl9f/9ARYZf862qFzgpfKya59J8lfnN+Hl++VRD+d9Y5NyS1KaksP7tdTroiFGD40PKjHqHoD4QiFLpUXfGrEg1Ctn2p+19Y=
+nWwCkV6Iz/IK4NPjg8TqkA9VdwXnJsZAG+F9nr5vvcJJCTdl/G+/1ehigYsYf1wOE55VYaDzmSUxYns3vXyeEuEd/frB0cdjbm7uZ7fux5/LzSxwgnDeuSOjMsPnOBoctpYLUu3RkiCVffO58dj0Rru4cDdCiDB0ugucyRvV07E=
+MiO5KvXUmISsmpCVoQEGg0cYOJ5fcBVcQFlo5SbtLcKLR6vk60EWZPSD8zJdKUiRaKdT/xfZ/7wmJ6ewJXiFWRa4n891xEYwDypoJ3RHuvGtiFhpKC7wBYukmyjb/+uRIU6E1t1DanWyqo8mENPASxaJD/OnUvrBrHJG6n0Tf+U=
+Ke2evsRPwgmY4DiWfGSeRLYm2Cuub6h54eRzJyfGwqM6boyEmxXL62OEptpNyFr1GyjlsS0FZY27DEL+xwGzmiJPtfBp1ItFOszFP8u2dS6e3hnIPiOVdDq6zFKLpRf52lqEAd35zLqhsTh2CwJFefL31IP7J1To+yZKY3FMcns=
+sZyN44CMRbq+nz8c60tsFoUwq5X9rHbaW3d9YHi/QaXSkgFJvE6NYIZya4bzff3wqVAaYRzcVHz3xv893ex39bNWe/hmz9XLOXVZlG3T4iQ4qkDhG+/ZFe14Pb6v8BLusSGAzMTpYLCsgmvxmX6nxVeqcFtiN7aqSICM16HSO0A=
+DPwmzJX3QkEoPEBw3cCqXugQkV22ZbxulDEiRy22tDrZL55Ea4NCxzIVMvcZZos4AyH5N7s/eyRB1OvEnjeldfhn6aoeS7yMrdnnImgkPxqY1/3tozoWnb27Ov6IlbF5LaMdMhBrpnkGpQAaKGEtXN1Qvzo1wKdC75d7iiqNMrg=
+oy4vlMrRtzM4+LGI8tRNXXsoheKm0RrK4WIigxq++udnUjFI6yjYAc1SrZvZROarzAp2YHueXRuM5r7XipH7D9fXOeub2cwl7zPPWbajaqJs5yTyQCSaiI7kdVxN73n5hEyv2ryUkZsHyTohZjJlvr0xiBxk+TDJ7Uuw9BezjK4=
+Decrypted(2us/char):Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! Hello this is a test!! Charlie was ere! 
+]]></system-out>
+  </testcase>
+  <testcase name="test2" classname="encryption.EncryptionTests" time="0.151">
+    <system-out><![CDATA[digest1: sYI2cCMkSBr+dat9hVYOyV1CrXJrzEP1cO594GLKbT4=
+digest2: MaJxvsvYp67X9aGzXFudACkxy5G+LzsAoy7AO1n4X+c=
+digest3: Ziq+udZTYbfH0nYp8R7wriw4EWm04MKv06KToLsMKdI=
+]]></system-out>
+  </testcase>
+  <testcase name="test3" classname="encryption.EncryptionTests" time="0.03">
+    <system-out><![CDATA[digest1: mmGZSae4cLfkcABPlkcPDKtqkp4=
+digest2: OQIpdRBr9HRpqF77afcPievYjeU=
+digest3: FPpyyzdgzJ1Hjoxe92qOXEgDJI4=
+]]></system-out>
+  </testcase>
+  <testcase name="test4" classname="encryption.EncryptionTests" time="0.034"/>
 </testsuite>
