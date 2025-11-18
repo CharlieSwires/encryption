@@ -1,2 +1,4 @@
+encryption\Encryption$EntropyMode.class
 encryption\AES_BC.class
 encryption\Encryption.class
+encryption\Encryption$OutputMode.class

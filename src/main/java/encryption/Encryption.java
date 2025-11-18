@@ -23,6 +23,7 @@ import javax.crypto.spec.PBEKeySpec;
 
 import org.bouncycastle.crypto.AsymmetricBlockCipher;
 import org.bouncycastle.crypto.digests.SHA1Digest;
+import org.bouncycastle.crypto.encodings.PKCS1Encoding;
 import org.bouncycastle.crypto.engines.RSAEngine;
 import org.bouncycastle.crypto.params.AsymmetricKeyParameter;
 import org.bouncycastle.crypto.util.PrivateKeyFactory;
@@ -39,69 +40,64 @@ public class Encryption {
     public static final int PUBLIC = 0;
     private static final int KEY_LENGTH = 1024;
     private static final int MAX_LENGTH = KEY_LENGTH/10;
+    
+    private enum OutputMode {
+        B64,
+        HEX
+    }
 
-    public static String[] generate (){
+    private enum EntropyMode {
+        CONSOLE,
+        STRONG
+    }
+
+    public static String[] generate() {
+        return generateInternal(EntropyMode.CONSOLE);
+    }
+
+    public static String[] generateOld() {
+        return generateInternal(EntropyMode.STRONG);
+    }
+
+    private static String[] generateInternal(EntropyMode mode) {
 
         try {
+            Security.addProvider(new BouncyCastleProvider());
 
-            Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-
-            // Create the public and private keys
             KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA", "BC");
-            Base64.Encoder b64 = Base64.getEncoder();
+            SecureRandom random;
 
-            SecureRandom random = new SecureRandom();
-            random.setSeed(gatherConsoleEntropy(10));
+            switch (mode) {
+                case CONSOLE:
+                    random = new SecureRandom();
+                    random.setSeed(gatherConsoleEntropy(10));
+                    break;
+
+                case STRONG:
+                    try {
+                        random = SecureRandom.getInstanceStrong();   // may block
+                    } catch (NoSuchAlgorithmException e) {
+                        random = new SecureRandom();                 // fallback
+                    }
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("Unknown entropy mode");
+            }
+
             generator.initialize(KEY_LENGTH, random);
 
             KeyPair pair = generator.generateKeyPair();
-            Key pubKey = pair.getPublic();
-            Key privKey = pair.getPrivate();
 
-            String[] result = new String[2];
-            result[PUBLIC] = b64.encodeToString(pubKey.getEncoded());
-            result[PRIVATE] = b64.encodeToString(privKey.getEncoded());
-            return result;
-        }
-        catch (Exception e) {
-            System.out.println(e);
-        }
-        return null;
-
-    }
-    public static String[] generateOld (){
-
-        try {
-
-            Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-
-            // Create the public and private keys
-            KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA", "BC");
             Base64.Encoder b64 = Base64.getEncoder();
+            String pubKey = b64.encodeToString(pair.getPublic().getEncoded());
+            String privKey = b64.encodeToString(pair.getPrivate().getEncoded());
 
-            SecureRandom sr;
-            try {
-                sr = SecureRandom.getInstanceStrong();   // may block on some systems
-            } catch (NoSuchAlgorithmException e) {
-                sr = new SecureRandom();                 // safe fallback
-            }    
-            
-            generator.initialize(KEY_LENGTH, sr);
+            return new String[]{ pubKey, privKey };
 
-            KeyPair pair = generator.generateKeyPair();
-            Key pubKey = pair.getPublic();
-            Key privKey = pair.getPrivate();
-
-            String[] result = new String[2];
-            result[PUBLIC] = b64.encodeToString(pubKey.getEncoded());
-            result[PRIVATE] = b64.encodeToString(privKey.getEncoded());
-            return result;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        catch (Exception e) {
-            System.out.println(e);
-        }
-        return null;
-
     }
 
 
@@ -164,72 +160,12 @@ public class Encryption {
     }
 
 
-    public static String encrypt (String publicKeyString, String inputData){
-
-        String encryptedData = "";
-        try {
-
-            Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-
-            Base64.Decoder b64d = Base64.getDecoder();
-            String key = publicKeyString;
-            AsymmetricKeyParameter publicKey = 
-                    (AsymmetricKeyParameter) PublicKeyFactory.createKey(b64d.decode(key));
-            AsymmetricBlockCipher e = new RSAEngine();
-            e = new org.bouncycastle.crypto.encodings.PKCS1Encoding(e);
-            e.init(true, publicKey);
-
-            Base64.Encoder b64e = Base64.getEncoder();
-            int modulus = inputData.getBytes().length% MAX_LENGTH;
-            int pages = inputData.getBytes().length/ MAX_LENGTH +(modulus > 0? 1:0);
-
-            for (int i = 0; i < pages;i++){
-                byte[] buffer = new byte[((pages == 1 || i == pages-1) && modulus != 0) ? modulus : MAX_LENGTH];
-                for (int j = 0; j < MAX_LENGTH && ((i * MAX_LENGTH + j) < inputData.getBytes().length); j++){
-                    buffer[j] = inputData.getBytes()[i * MAX_LENGTH + j];
-                }
-                byte[] messageBytes = buffer;
-                byte[] hexEncodedCipher = e.processBlock(messageBytes, 0, messageBytes.length);
-
-                encryptedData += b64e.encodeToString(hexEncodedCipher)+(pages == 1 || i == pages-1? "":"\n");
-
-            }
-        }
-        catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        return encryptedData;
+    public static String encrypt(String publicKeyString, String inputData) {
+        return encryptInternal(publicKeyString, inputData, OutputMode.B64);
     }
 
-
-    public static String decrypt (String privateKeyString, String encryptedData) {
-
-        String outputData = "";
-        try {
-
-            Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-
-            String key = privateKeyString;
-            Base64.Decoder b64 = Base64.getDecoder();
-            AsymmetricKeyParameter privateKey = 
-                    (AsymmetricKeyParameter) PrivateKeyFactory.createKey(b64.decode(key));
-            AsymmetricBlockCipher e = new RSAEngine();
-            e = new org.bouncycastle.crypto.encodings.PKCS1Encoding(e);
-            e.init(false, privateKey);
-
-            for(String buffer: encryptedData.split("\n")){
-                byte[] messageBytes = b64.decode(buffer);
-                byte[] hexEncodedCipher = e.processBlock(messageBytes, 0, messageBytes.length);
-                outputData += new String(hexEncodedCipher);
-            }
- 
-        }
-        catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        return outputData;
+    public static String decrypt(String privateKeyString, String encryptedData) {
+        return decryptInternal(privateKeyString, encryptedData, OutputMode.B64);
     }
 
     public static String byteArrayToHexString(byte[] bytes) {
@@ -264,69 +200,95 @@ public class Encryption {
 
 		return byteArray;
 	}
-	public static String decryptHex(String privateKeyString, String encryptedData) {
-		String outputData = "";
-		try {
-
-			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-
-			String key = privateKeyString;
-			Base64.Decoder b64 = Base64.getDecoder();
-			AsymmetricKeyParameter privateKey = 
-					(AsymmetricKeyParameter) PrivateKeyFactory.createKey(b64.decode(key));
-			AsymmetricBlockCipher e = new RSAEngine();
-			e = new org.bouncycastle.crypto.encodings.PKCS1Encoding(e);
-			e.init(false, privateKey);
-
-			for(String buffer: encryptedData.split("\n")){
-				byte[] messageBytes = hexStringToByteArray(buffer);
-				byte[] hexEncodedCipher = e.processBlock(messageBytes, 0, messageBytes.length);
-				outputData += new String(hexEncodedCipher);
-			}
-
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-
-		return outputData;
-	}
+	
 	public static String encryptHex(String publicKeyString, String inputData) {
-
-		String encryptedData = "";
-		try {
-
-			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-
-			Base64.Decoder b64d = Base64.getDecoder();
-			String key = publicKeyString;
-			AsymmetricKeyParameter publicKey = 
-					(AsymmetricKeyParameter) PublicKeyFactory.createKey(b64d.decode(key));
-			AsymmetricBlockCipher e = new RSAEngine();
-			e = new org.bouncycastle.crypto.encodings.PKCS1Encoding(e);
-			e.init(true, publicKey);
-
-			int modulus = inputData.getBytes().length% MAX_LENGTH;
-			int pages = inputData.getBytes().length/ MAX_LENGTH +(modulus > 0? 1:0);
-
-			for (int i = 0; i < pages;i++){
-				byte[] buffer = new byte[((pages == 1 || i == pages-1) && modulus != 0) ? modulus : MAX_LENGTH];
-				for (int j = 0; j < MAX_LENGTH && ((i * MAX_LENGTH + j) < inputData.getBytes().length); j++){
-					buffer[j] = inputData.getBytes()[i * MAX_LENGTH + j];
-				}
-				byte[] messageBytes = buffer;
-				byte[] hexEncodedCipher = e.processBlock(messageBytes, 0, messageBytes.length);
-
-				encryptedData += byteArrayToHexString(hexEncodedCipher)+(pages == 1 || i == pages-1? "":"\n");
-
-			}
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-
-		return encryptedData;	
+	    return encryptInternal(publicKeyString, inputData, OutputMode.HEX);
 	}
+
+	public static String decryptHex(String privateKeyString, String encryptedData) {
+	    return decryptInternal(privateKeyString, encryptedData, OutputMode.HEX);
+	}
+	
+	private static String encryptInternal(String publicKeyString, String inputData, OutputMode mode) {
+
+	    try {
+	        Security.addProvider(new BouncyCastleProvider());
+
+	        Base64.Decoder b64d = Base64.getDecoder();
+
+	        AsymmetricKeyParameter publicKey =
+	                PublicKeyFactory.createKey(b64d.decode(publicKeyString));
+
+	        AsymmetricBlockCipher cipher = new PKCS1Encoding(new RSAEngine());
+	        cipher.init(true, publicKey);
+
+	        byte[] data = inputData.getBytes();
+	        int modulus = data.length % MAX_LENGTH;
+	        int pages = data.length / MAX_LENGTH + (modulus > 0 ? 1 : 0);
+
+	        StringBuilder out = new StringBuilder();
+
+	        for (int i = 0; i < pages; i++) {
+	            int chunkSize = ((pages == 1 || i == pages - 1) && modulus != 0)
+	                    ? modulus
+	                    : MAX_LENGTH;
+
+	            byte[] buffer = new byte[chunkSize];
+	            System.arraycopy(data, i * MAX_LENGTH, buffer, 0, chunkSize);
+
+	            byte[] encrypted = cipher.processBlock(buffer, 0, buffer.length);
+
+	            if (mode == OutputMode.B64) {
+	                out.append(Base64.getEncoder().encodeToString(encrypted));
+	            } else {
+	                out.append(byteArrayToHexString(encrypted));
+	            }
+
+	            if (i < pages - 1) out.append("\n");
+	        }
+
+	        return out.toString();
+
+	    } catch (Exception e) {
+	        throw new RuntimeException(e);
+	    }
+	}
+	private static String decryptInternal(String privateKeyString, String encryptedData, OutputMode mode) {
+
+	    try {
+	        Security.addProvider(new BouncyCastleProvider());
+
+	        Base64.Decoder b64 = Base64.getDecoder();
+	        AsymmetricKeyParameter privateKey =
+	                PrivateKeyFactory.createKey(b64.decode(privateKeyString));
+
+	        AsymmetricBlockCipher cipher = new PKCS1Encoding(new RSAEngine());
+	        cipher.init(false, privateKey);
+
+	        StringBuilder out = new StringBuilder();
+
+	        for (String line : encryptedData.split("\n")) {
+
+	            byte[] input;
+
+	            if (mode == OutputMode.B64) {
+	                input = b64.decode(line);
+	            } else {
+	                input = hexStringToByteArray(line);
+	            }
+
+	            byte[] decrypted = cipher.processBlock(input, 0, input.length);
+	            out.append(new String(decrypted));
+	        }
+
+	        return out.toString();
+
+	    } catch (Exception e) {
+	        throw new RuntimeException(e);
+	    }
+	}
+
+
     public static void main(String [] args) {
         String [] result = Encryption.generate();
         System.out.println("Private="+result[Encryption.PRIVATE]);
