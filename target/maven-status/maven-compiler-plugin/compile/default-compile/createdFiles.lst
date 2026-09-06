@@ -1,4 +1,8 @@
 encryption\Encryption$EntropyMode.class
 encryption\AES_BC.class
 encryption\Encryption.class
+encryption\RandomPassphraseGenerator.class
 encryption\Encryption$OutputMode.class
+encryption\FieldCryptoDemo$EncryptedField.class
+encryption\FieldCryptoDemo$EncryptedPrivateKey.class
+encryption\FieldCryptoDemo.class

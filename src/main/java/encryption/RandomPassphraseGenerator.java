@@ -85,7 +85,7 @@ public final class RandomPassphraseGenerator {
 
     public static void main(String[] args) throws Exception {
         Path wordListPath = Path.of(
-                args.length > 0 ? args[0] : "c:/users/owner/eclipse-workspace/encryption/src/main/java/encryption/eff_large_wordlist.txt"
+                args.length > 0 ? args[0] : "c:/users/charl/eclipse-workspace/encryption/src/main/java/encryption/eff_large_wordlist.txt"
         );
 
         RandomPassphraseGenerator generator =
