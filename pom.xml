@@ -19,12 +19,11 @@
     <dependencies>
 
         <!-- BouncyCastle -->
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-debug-jdk15on</artifactId>
-            <version>1.70</version>
-        </dependency>
-
+		<dependency>
+    		<groupId>org.bouncycastle</groupId>
+    		<artifactId>bcprov-jdk18on</artifactId>
+    		<version>1.86</version>
+		</dependency>
         <!-- Modern JUnit BOM -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
